@@ -34,7 +34,7 @@ class InTransactionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'transaction_date' => 'required',
+        'intransaction_date' => 'required',
         'prodi' => 'required',
         'bhp_id' => 'required',
         'qty_intransaction' => 'required',
@@ -71,7 +71,7 @@ class InTransactionController extends Controller
     public function update(Request $request, InTransaction $inTransaction)
     {
         $request->validate([
-        'transaction_date' => 'required',
+        'intransaction_date' => 'required',
         'prodi' => 'required',
         'bhp_id' => 'required',
         'qty_intransaction' => 'required',

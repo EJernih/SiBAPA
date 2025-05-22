@@ -9,7 +9,7 @@ class InTransaction extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'transaction_date',
+        'intransaction_date',
         'prodi',
         'bhp_id',
         'qty_intransaction',

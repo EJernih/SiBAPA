@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('in_transactions', function (Blueprint $table) {
             $table->id();
-            $table->date('transaction_date');
+            $table->date('intransaction_date');
             $table->string('prodi');
             $table->foreignId('bhp_id')->constrained('bhps')->onDelete('cascade');
             $table->integer('qty_intransaction');

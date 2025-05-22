@@ -18,7 +18,7 @@
                             <input
                                 type="date"
                                 class="form-control"
-                                name="transaction_date"
+                                name="intransaction_date"
                                 placeholder="Select Date"
                                 value="{{ $inTransaction->transaction_date }}"
                             />

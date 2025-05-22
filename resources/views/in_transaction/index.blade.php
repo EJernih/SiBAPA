@@ -42,7 +42,7 @@
                 @foreach ($inTransactions->sortBy('id') as $inTransaction) 
                 <tr>
                     <td class="table-plus">{{ $i++ }}</td>
-                    <td class="table-plus">{{ $inTransaction->transaction_date }}</td>
+                    <td class="table-plus">{{ $inTransaction->intransaction_date }}</td>
                     <td class="table-plus">{{ $inTransaction->prodi }}</td>
                     <td>{{ $inTransaction->bhp->name ?? '' }}</td>
                     <td>{{ $inTransaction->qty_intransaction }}</td>

@@ -30,7 +30,7 @@
                             <input
                                 type="date"
                                 class="form-control"
-                                name="transaction_date"
+                                name="intransaction_date"
                                 placeholder="Select Date"
                             />
                         </div>
