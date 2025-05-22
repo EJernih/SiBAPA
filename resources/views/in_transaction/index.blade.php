@@ -20,19 +20,19 @@
         </div>
     @endif
 
-    <div class="pb-20">
-        <table class="data-table table stripe hover nowrap">
+    <div class="pb-20" style="overflow-x:auto;">
+        <table class="data-table table stripe hover">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th class="table-plus datatable-nosort">Tanggal Transaksi</th>
-                    <th class="table-plus datatable-nosort">Prodi</th>
-                    <th>Nama BHP</th>
-                    <th>Jumlah Barang Masuk</th>
-                    <th>Satuan</th>
-                    <th>Lokasi</th>
-                    <th>Keterangan</th>
-                    <th class="datatable-nosort">Action</th>
+                    <th style="min-width: 190px" class="table-plus datatable-nosort">Tanggal Transaksi</th>
+                    <th style="min-width: 190px" class="table-plus datatable-nosort">Prodi</th>
+                    <th style="min-width: 190px">Nama BHP</th>
+                    <th  style="min-width: 190px">Jumlah Barang Masuk</th>
+                    <th style="min-width: 100px">Satuan</th>
+                    <th style="min-width: 190px">Lokasi</th>
+                    <th style="min-width: 200px">Keterangan</th>
+                    <th class="datatable-nosort" style="min-width: 120px">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,12 +44,12 @@
                     <td class="table-plus">{{ $i++ }}</td>
                     <td class="table-plus">{{ $inTransaction->transaction_date }}</td>
                     <td class="table-plus">{{ $inTransaction->prodi }}</td>
-                    <td>{{ $inTransaction->bhp->name }}</td>
+                    <td>{{ $inTransaction->bhp->name ?? '' }}</td>
                     <td>{{ $inTransaction->qty_intransaction }}</td>
-                    <td>{{ $inTransaction->unit->name }}</td>
+                    <td>{{ $inTransaction->unit->name ?? '' }}</td>
                     <td>{{ $inTransaction->location }}</td>
-                    <td>{{ $inTransaction->description }}</td>
-                    <td>
+                    <td>{{ Str::limit($inTransaction->description, 50) }}</td>
+                    <td style="white-space: nowrap">
                         <div class="dropdown">
                             <a
                                 class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"

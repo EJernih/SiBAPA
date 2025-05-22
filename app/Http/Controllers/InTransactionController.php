@@ -33,7 +33,18 @@ class InTransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'transaction_date' => 'required',
+        'prodi' => 'required',
+        'bhp_id' => 'required',
+        'qty_intransaction' => 'required',
+        'unit_id' => 'required',
+        'location' => 'required',
+        'description' => 'required'
+    ]);
+    $input = $request->all();
+    InTransaction::create($input);
+    return redirect('inTransactions')->with('message', 'In Transaction created successfully.');
     }
 
     /**
@@ -49,7 +60,9 @@ class InTransactionController extends Controller
      */
     public function edit(InTransaction $inTransaction)
     {
-        //
+        $bhps = Bhp::all();
+        $units = Unit::all();
+        return view('in_transaction.edit', compact('inTransaction', 'bhps', 'units'));
     }
 
     /**
@@ -57,7 +70,18 @@ class InTransactionController extends Controller
      */
     public function update(Request $request, InTransaction $inTransaction)
     {
-        //
+        $request->validate([
+        'transaction_date' => 'required',
+        'prodi' => 'required',
+        'bhp_id' => 'required',
+        'qty_intransaction' => 'required',
+        'unit_id' => 'required',
+        'location' => 'required',
+        'description' => 'required'
+    ]);
+    $input = $request->all();
+    $inTransaction->update($input);
+    return redirect('inTransactions')->with('message', 'In Transaction updated successfully.');
     }
 
     /**

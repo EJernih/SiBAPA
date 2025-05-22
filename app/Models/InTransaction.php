@@ -17,4 +17,16 @@ class InTransaction extends Model
         'location',
         'description'
     ];
+
+    //relasi ke tabel bhps
+    public function bhp()
+    {
+        return $this->belongsTo(Bhp::class);
+    }
+
+    //relasi ke tabel units
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
 }

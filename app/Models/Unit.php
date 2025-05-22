@@ -23,4 +23,16 @@ class Unit extends Model
     {
         return $this->hasMany(BhpRequestDetail::class, 'unit_id');
     }
+
+        //relasi ke tabel InTransaction
+    public function inTransactions()
+    {
+        return $this->hasMany(InTransaction::class, 'bhp_id');
+    }
+
+    //relasi ke tabel OutTransaction
+    public function outTransactions()
+    {
+        return $this->hasMany(OutTransaction::class, 'bhp_id');
+    }
 }
