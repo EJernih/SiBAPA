@@ -6,6 +6,8 @@ use App\Models\InTransaction;
 use App\Models\Bhp; 
 use App\Models\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class InTransactionController extends Controller
 {
@@ -37,14 +39,21 @@ class InTransactionController extends Controller
         'intransaction_date' => 'required',
         'prodi' => 'required',
         'bhp_id' => 'required',
-        'qty_intransaction' => 'required',
+        'qty_intransaction' => 'required|integer|min:1',
         'unit_id' => 'required',
         'location' => 'required',
         'description' => 'required'
     ]);
-    $input = $request->all();
-    InTransaction::create($input);
-    return redirect('inTransactions')->with('message', 'In Transaction created successfully.');
+    DB::transaction(function() use($request) {
+        //simpan transaksi masuk
+        $intransaction = InTransaction::create($request->all());
+
+        //update stok bhp
+        $bhp = Bhp::findOrFail($request->bhp_id);
+        $bhp->stock += $request->qty_intransaction;
+        $bhp->update();
+    });
+    return redirect('/inTransactions')->with('message', 'In Transaction created successfully.');
     }
 
     /**
@@ -81,7 +90,7 @@ class InTransactionController extends Controller
     ]);
     $input = $request->all();
     $inTransaction->update($input);
-    return redirect('inTransactions')->with('message', 'In Transaction updated successfully.');
+    return redirect('/inTransactions')->with('message', 'In Transaction updated successfully.');
     }
 
     /**
@@ -89,6 +98,7 @@ class InTransactionController extends Controller
      */
     public function destroy(InTransaction $inTransaction)
     {
-        //
+        $inTransaction->delete();
+        return redirect('/inTransactions')->with('message', 'In Transaction deleted successfully.');
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\BhpRequestController;
 use App\Http\Controllers\BhpRequestDetailController;
 use App\Http\Controllers\InTransactionController;
+use App\Http\Controllers\OutTransactionController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -27,3 +28,5 @@ Route::resource('units', UnitController::class);
 Route::resource('bhpRequests', BhpRequestController::class);
 Route::resource('detailRequests', BhpRequestDetailController::class);
 Route::resource('inTransactions', InTransactionController::class);
+Route::resource('outTransactions', OutTransactionController::class);
+Route::resource('Transactions', TransactionController::class);

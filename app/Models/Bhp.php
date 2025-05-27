@@ -39,4 +39,5 @@ class Bhp extends Model
         return $this->hasMany(OutTransaction::class, 'bhp_id');
     }
 
+
 }

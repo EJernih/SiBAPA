@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\OutTransaction;
+use App\Models\Bhp; 
+use App\Models\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OutTransactionController extends Controller
 {
@@ -12,7 +15,8 @@ class OutTransactionController extends Controller
      */
     public function index()
     {
-        //
+        $outTransactions = OutTransaction::all();
+        return view('out_transaction.index', compact('outTransactions'));
     }
 
     /**
@@ -20,7 +24,9 @@ class OutTransactionController extends Controller
      */
     public function create()
     {
-        //
+        $bhps = Bhp::all();
+        $units = Unit::all();
+        return view('out_transaction.create', compact('bhps', 'units'));
     }
 
     /**
@@ -28,7 +34,40 @@ class OutTransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'outtransaction_date' => 'required',
+        'matakuliah' => 'required',
+        'prodi' => 'required',
+        'location' => 'required',
+        'bhp_id' => 'required',
+        'qty_outtransaction' => 'required',
+        'unit_id' => 'required',
+        'description' => 'required'
+    ]);
+    $result = DB::transaction(function() use($request) {
+
+        $bhp = Bhp::findOrFail($request->bhp_id);
+
+        //mastiin stok cukup
+        if ($bhp->stock < $request->qty_outtransaction) {
+            return false;
+        }
+
+        //simpan transaksi keluar
+        $outtransaction = OutTransaction::create($request->all());
+
+        //update stok bhp
+        $bhp->stock -= $request->qty_outtransaction;
+        $bhp->save();
+
+        return true;
+    });
+
+    if ($result) {
+        return redirect('/outTransactions')->with('message', 'Out transaction created successfully and stock updated.');
+    } else {
+        return redirect('/outTransactions')->with('message', 'Out transaction failed. Stock not enough.');
+    }
     }
 
     /**
@@ -44,7 +83,9 @@ class OutTransactionController extends Controller
      */
     public function edit(OutTransaction $outTransaction)
     {
-        //
+        $bhps = Bhp::all();
+        $units = Unit::all();
+        return view('out_transaction.edit', compact('outTransaction', 'bhps', 'units'));
     }
 
     /**
@@ -52,7 +93,19 @@ class OutTransactionController extends Controller
      */
     public function update(Request $request, OutTransaction $outTransaction)
     {
-        //
+        $request->validate([
+        'outtransaction_date' => 'required',
+        'matakuliah' => 'required',
+        'prodi' => 'required',
+        'location' => 'required',
+        'bhp_id' => 'required',
+        'qty_outtransaction' => 'required',
+        'unit_id' => 'required',
+        'description' => 'required'
+    ]);
+    $input = $request->all();
+    $outTransaction->update($input);
+    return redirect('/outTransactions')->with('message', 'Out Transaction updated successfully.');
     }
 
     /**
@@ -60,6 +113,7 @@ class OutTransactionController extends Controller
      */
     public function destroy(OutTransaction $outTransaction)
     {
-        //
+        $outTransaction->delete();
+        return redirect('/outTransactions')->with('message', 'Out Transaction deleted successfully.');
     }
 }
