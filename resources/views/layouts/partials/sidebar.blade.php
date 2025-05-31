@@ -271,7 +271,7 @@
                     </a>
                     <ul class="submenu" style="{{ request()->is('requests*', 'details*') ? 'display:block;' : '' }}">
                         <li><a href="/bhpRequests">Data Pengajuan</a></li>
-                        <li><a href="knob-chart.html">Detail Pengajuan</a></li>
+                        <li><a href="/detailRequests">Detail Pengajuan</a></li>
                         <li><a href="jvectormap.html">jvectormap</a></li>
                         <li><a href="apexcharts.html">Apexcharts</a></li>
                     </ul>

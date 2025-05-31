@@ -9,7 +9,7 @@ class Unit extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
+        'name'
     ];
 
     //relasi dengan tabel bhp

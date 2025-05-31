@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\BhpController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\BhpRequestController;
@@ -23,6 +24,7 @@ Route::get('/dashboard', function () {
 Route::view('/example-page','example-page');
 Route::view('/example-auth','example-auth');
 
+Route::resource('prodis', ProdiController::class);
 Route::resource('bhps', BhpController::class);
 Route::resource('units', UnitController::class);
 Route::resource('bhpRequests', BhpRequestController::class);
