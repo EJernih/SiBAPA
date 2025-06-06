@@ -196,21 +196,18 @@
                 <li class="dropdown {{ request()->is('forms*')? 'show' : '' }}">
                     <a href="javascript:;" class="dropdown-toggle {{ request()->is('forms*')? 'active' : '' }}">
                         <span class="micon bi bi-textarea-resize"></span
-                        ><span class="mtext">Forms</span>
+                        ><span class="mtext">Master</span>
                     </a>
                     <ul class="submenu" class="{{ request()->is('forms*')? 'display:block;' : '' }}">
-                        <li><a href="#">Form Basic</a></li>
-                        <li><a href="#">Advanced Components</a></li>
-                        <li><a href="#">Form Wizard</a></li>
-                        <li><a href="#">HTML5 Editor</a></li>
-                        <li><a href="#">Form Pickers</a></li>
-                        <li><a href="#">Image Cropper</a></li>
-                        <li><a href="#">Image Dropzone</a></li>
+                        <li><a href="/bhps">BHP</a></li>
+                        <li><a href="/units">SATUAN</a></li>
+                        <li><a href="/prodis">PRODI</a></li>
+                        <li><a href="/labs">LAB</a></li>
                     </ul>
                 </li>
 
                 
-                <li class="dropdown {{ request()->is('tables*')? 'show' : '' }}">
+                {{-- <li class="dropdown {{ request()->is('tables*')? 'show' : '' }}">
                     <a href="javascript:;" class="dropdown-toggle {{ request()->is('tables*')? 'active' : '' }}">
                         <span class="micon bi bi-table"></span
                         ><span class="mtext">Tables</span>
@@ -253,15 +250,15 @@
                         <li><a href="ui-range-slider.html">Range slider</a></li>
                         <li><a href="ui-carousel.html">Carousel</a></li>
                     </ul>
-                </li>
-                <li class="dropdown" {{ request()->is('bhps*') || request()->is('units*') ? 'show' : '' }}>
-                    <a href="javascript:;" class="dropdown-toggle {{request()->is('bhps*') || request()->is('units*') ? 'active' : '' }}">
+                </li> --}}
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-command"></span
                         ><span class="mtext">BHP</span>
                     </a>
-                    <ul class="submenu" style="{{ request()->is('bhps*','units*')? 'display:block;' : '' }}">
-                        <li class=""><a href="/bhps">Data BHP</a></li>
-                        <li><a href="/units">Data Unit</a></li>
+                    <ul class="submenu" style="">
+                        <li class=""><a href="#">Data BHP</a></li>
+                        <li><a href="#">Data Unit</a></li>
                     </ul>
                 </li>
                 <li class="dropdown" {{ request()->is('requests*')? 'show' : '' }}>
@@ -272,8 +269,6 @@
                     <ul class="submenu" style="{{ request()->is('requests*', 'details*') ? 'display:block;' : '' }}">
                         <li><a href="/bhpRequests">Data Pengajuan</a></li>
                         <li><a href="/detailRequests">Detail Pengajuan</a></li>
-                        <li><a href="jvectormap.html">jvectormap</a></li>
-                        <li><a href="apexcharts.html">Apexcharts</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -284,11 +279,9 @@
                     <ul class="submenu">
                         <li><a href="/inTransactions">Transaksi Masuk</a></li>
                         <li><a href="/outTransactions">Transaksi Keluar</a></li>
-                        <li><a href="forgot-password.html">Forgot Password</a></li>
-                        <li><a href="reset-password.html">Reset Password</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-bug"></span
                         ><span class="mtext">Error Pages</span>
@@ -355,7 +348,7 @@
                         <span class="micon bi bi-chat-right-dots"></span
                         ><span class="mtext">Chat</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="invoice.html" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-receipt-cutoff"></span
@@ -389,10 +382,6 @@
                         class="dropdown-toggle no-arrow"
                     >
                         <span class="micon bi bi-layout-text-window-reverse"></span>
-                        <span class="mtext"
-                            >Landing Page
-                            <img src="{{ asset('back/vendors/images/coming-soon.png')}}" alt="" width="25" />
-                        /></span>
                     </a>
                 </li>
             </ul>

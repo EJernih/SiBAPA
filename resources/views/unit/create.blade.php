@@ -9,13 +9,13 @@
 <form id="bhpForm" action="{{ route ('units.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
-    @error('name')
+    @error('name_unit')
         <small style="color: red">{{ $message }}</small>
     @enderror
 	<div class="form-group row">
 		<label class="col-sm-12 col-md-2 col-form-label">Satuan</label>
 		<div class="col-sm-12 col-md-10">
-			<input class="form-control" type="text" name="name" placeholder="Satuan">
+			<input class="form-control" type="text" name="name_unit" placeholder="Satuan">
 		</div>
 	</div>
 

@@ -9,10 +9,10 @@ class Bhp extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
+        'name_bhp',
         'stock',
         'minimum_stock',
-        'unit_id'
+        'unit_id',
     ];
 
     //relasi ke tabel units
@@ -39,5 +39,10 @@ class Bhp extends Model
         return $this->hasMany(OutTransaction::class, 'bhp_id');
     }
 
+    //relasi ke tabel transaction
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'bhp_id');
+    }
 
 }

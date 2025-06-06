@@ -10,11 +10,10 @@ class InTransaction extends Model
     use HasFactory;
     protected $fillable = [
         'intransaction_date',
-        'prodi',
+        'lab_id',
         'bhp_id',
         'qty_intransaction',
-        'unit_id',
-        'location',
+
         'description'
     ];
 
@@ -28,5 +27,10 @@ class InTransaction extends Model
     public function unit()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function lab()
+    {
+        return $this->belongsTo(Lab::class);
     }
 }

@@ -10,13 +10,13 @@
     @csrf
     @method('PUT')
     
-    @error('name')
+    @error('name_bhp')
         <small style="color: red">{{ $message }}</small>
     @enderror
 	<div class="form-group row">
 		<label class="col-sm-12 col-md-2 col-form-label">Nama BHP</label>
 		<div class="col-sm-12 col-md-10">
-			<input class="form-control" type="text" name="name" placeholder="Nama BHP" value="{{ $bhp->name }}">
+			<input class="form-control" type="text" name="name_bhp" placeholder="Nama BHP" value="{{ $bhp->name_bhp }}">
 		</div>
 	</div>
 
@@ -54,7 +54,7 @@
                     @foreach ($units as $unit)
 					    <option value="{{ $unit->id }}"
                             {{ $bhp->unit_id == $unit->id?'selected' : '' }}>
-                            {{ $unit->name }}
+                            {{ $unit->name_unit }}
                         </option>
                     @endforeach
                 @endif

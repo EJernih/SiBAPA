@@ -17,4 +17,5 @@ class Prodi extends Model
     {
         return $this->hasMany(Lab::class);
     }
+
 }

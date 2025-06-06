@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->date('outtransaction_date');
             $table->string('matakuliah');
-            $table->string('prodi');
-            $table->string('location');
+            $table->foreignId('lab_id')->constrained('labs')->onDelete('cascade');
             $table->foreignId('bhp_id')->constrained('bhps')->onDelete('cascade');
             $table->integer('qty_outtransaction');
-            $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
             $table->string('description');
             $table->timestamps();
         });

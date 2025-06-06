@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('in_transactions', function (Blueprint $table) {
             $table->id();
             $table->date('intransaction_date');
-            $table->string('prodi');
+            $table->foreignId('lab_id')->constrained('labs')->onDelete('cascade');
             $table->foreignId('bhp_id')->constrained('bhps')->onDelete('cascade');
             $table->integer('qty_intransaction');
-            $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
-            $table->string('location');
             $table->string('description');
             $table->timestamps();
         });

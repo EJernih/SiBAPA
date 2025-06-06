@@ -14,28 +14,41 @@
     
 @section('content')
 
-<a href="{{ route('inTransactions.index') }}">
+<a href="{{ route('transactions.index') }}">
     <button type="button" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
         Kembali
     </button>
 </a> 
     <div class="wizard-content">
-        <form id="requestForm" class="tab-wizard wizard-circle wizard" action="{{ route('inTransactions.store') }}" method="POST" enctype="multipart/form-data"> 
+        <form id="requestForm" class="tab-wizard wizard-circle wizard" action="{{ route('transactions.store') }}" method="POST" enctype="multipart/form-data"> 
         @csrf
             <section>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Tanggal Transaksi :</label>
                             <input
                                 type="date"
                                 class="form-control"
-                                name="intransaction_date"
+                                name="transaction_date"
                                 placeholder="Select Date"
                             />
                         </div>
                     </div>
-                    <div class="col-md-6">
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="type">Tipe Transaksi :</label>
+                                <div class="">
+                                    <select class="custom-select col-12" id="type" name="type">
+                                        <option value="">Choose...</option>
+                                            <option value="in" {{ old('type') == 'in' ? 'selected' : '' }}>Masuk</option>
+                                            <option value="out" {{ old('type') == 'out' ? 'selected' : '' }}>Keluar</option>
+                                    </select>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="lab_id">Lokasi :</label>
                                 <div class="">
@@ -58,7 +71,7 @@
                                     <select class="custom-select col-12" id="bhp_id" name="bhp_id">
                                         <option value="">Choose...</option>
                                         @foreach ($bhps as $bhp)
-                                            <option value="{{ $bhp->id }}">{{ $bhp->name_bhp }}</option>
+                                            <option value="{{ $bhp->id }}">{{ $bhp->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -66,8 +79,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Jumlah Barang Masuk :</label>
-                            <input type="number" class="form-control" name="qty_intransaction" placeholder="Jumlah Barang Masuk" />
+                            <label>Jumlah Barang Keluar :</label>
+                            <input type="number" class="form-control" name="qty_transaction" placeholder="Jumlah Barang Keluar" />
                         </div>
                     </div>
 
@@ -75,7 +88,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label>Keterangan :</label>
                                 <input class="form-control" type="text" name="description" placeholder="Keterangan tambahan">

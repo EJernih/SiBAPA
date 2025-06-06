@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title','BHP')
+@section('title','lab')
 @section('content')
 <!-- Simple Datatable start -->
-<a href="/detailRequests/create"  class="mb-3 float-right text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">
+<a href="/labs/create"  class="mb-3 float-right text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">
     Tambah
 </a>
     <div class="pd-20">
@@ -21,11 +21,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th class="table-plus datatable-nosort">Pengajuan</th>
-                    <th>Nama BHP</th>
-                    <th>Satuan</th>
-                    <th>Jumlah Yang Diajukan</th>
-                    <th>Keterangan</th>
+                    <th class="table-plus datatable-nosort">Nama lab</th>
+                    <th>Prodi</th>
                     <th class="datatable-nosort">Action</th>
                 </tr>
             </thead>
@@ -33,14 +30,11 @@
                 @php
                     $i = 1;
                 @endphp
-                @foreach ($detailRequests->sortBy('id') as $detailRequest) 
+                @foreach ($labs->sortBy('id') as $lab) 
                 <tr>
                     <td>{{ $i++ }}</td>
-                    <td class="table-plus">{{ $detailRequest->bhpRequest->request_by ?? '-' }} - {{ $detailRequest->bhpRequest->request_date ?? '-' }}</td>
-                    <td>{{ $detailRequest->bhp->name_bhp ?? '-' }}</td>
-                    <td>{{ $detailRequest->unit->name_unit ?? '-' }}</td>
-                    <td>{{ $detailRequest->quantity_requested ?? '-' }}</td>
-                    <td>{{ $detailRequest->description  ?? '-' }}</td>
+                    <td class="table-plus">{{ $lab->name_lab }}</td>
+                    <td>{{ $lab->prodi->name  ?? '-' }}</td>
                     <td>
                         <div class="dropdown" style="display: inline-block;">
                             <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -48,11 +42,11 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                 <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                                <a class="dropdown-item" href="{{ route('detailRequests.edit', $detailRequest->id) }}"><i class="dw dw-edit2"></i> Edit</a>
-                                <form id="deleteForm{{$detailRequest->id}}" action="{{ route('detailRequests.destroy', $detailRequest->id) }}" method="POST" style="display:inline-block;">
+                                <a class="dropdown-item" href="{{ route('labs.edit', $lab->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                <form id="deleteForm{{$lab->id}}" action="{{ route('labs.destroy', $lab->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="#" class="dropdown-item" onclick="event.preventDefault(); if(confirm('Yakin ingin menghapus?')) { document.getElementById('deleteForm{{$detailRequest->id}}').submit(); }">
+                                    <a href="#" class="dropdown-item" onclick="event.preventDefault(); if(confirm('Yakin ingin menghapus?')) { document.getElementById('deleteForm{{$lab->id}}').submit(); }">
                                         <i class="dw dw-delete-3"></i> Delete
                                     </a>
                                 </form>

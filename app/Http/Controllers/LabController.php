@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lab;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class LabController extends Controller
@@ -12,7 +13,9 @@ class LabController extends Controller
      */
     public function index()
     {
-        //
+        $labs = Lab::with('prodi')->get(); // eager loading untuk memuat halaman prodi, menampilkan nama prodi
+        $pageTitle = "Laboratorium";
+        return view('lab.index', compact('labs', 'pageTitle'));
     }
 
     /**
@@ -20,7 +23,8 @@ class LabController extends Controller
      */
     public function create()
     {
-        //
+        $prodis = Prodi::all();
+        return view('lab.create', compact('prodis'));
     }
 
     /**
@@ -28,7 +32,14 @@ class LabController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name_lab' =>'required',
+            'prodi_id' =>'required',
+        ]);
+        $input = $request->all();
+
+        Lab::create($input);
+        return redirect('/labs')->with('message', 'Laboratorium Berhasil Ditambahkan');
     }
 
     /**
@@ -44,7 +55,9 @@ class LabController extends Controller
      */
     public function edit(Lab $lab)
     {
-        //
+        $prodis = Prodi::all();
+        $labs = Lab::all();
+        return view('lab.edit', compact('lab', 'prodis'));
     }
 
     /**
@@ -52,7 +65,14 @@ class LabController extends Controller
      */
     public function update(Request $request, Lab $lab)
     {
-        //
+        $request->validate([
+            'name_lab' =>'required',
+            'prodi_id' =>'required',
+        ]);
+        $input = $request->all();
+
+        $lab->update($input);
+        return redirect('/labs')->with('message', 'Laboratorium Berhasil Diupdate');
     }
 
     /**
@@ -60,6 +80,7 @@ class LabController extends Controller
      */
     public function destroy(Lab $lab)
     {
-        //
+        $lab->delete();
+        return redirect('/labs')->with('message', 'Laboratorium Berhasil Dihapus');
     }
 }

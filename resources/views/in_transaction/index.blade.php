@@ -26,11 +26,9 @@
                 <tr>
                     <th>No</th>
                     <th style="min-width: 190px" class="table-plus datatable-nosort">Tanggal Transaksi</th>
-                    <th style="min-width: 190px" class="table-plus datatable-nosort">Prodi</th>
+                    <th style="min-width: 190px" class="table-plus datatable-nosort">Lokasi</th>
                     <th style="min-width: 190px">Nama BHP</th>
                     <th  style="min-width: 190px">Jumlah Barang Masuk</th>
-                    <th style="min-width: 100px">Satuan</th>
-                    <th style="min-width: 190px">Lokasi</th>
                     <th style="min-width: 200px">Keterangan</th>
                     <th class="datatable-nosort" style="min-width: 120px">Action</th>
                 </tr>
@@ -43,11 +41,9 @@
                 <tr>
                     <td class="table-plus">{{ $i++ }}</td>
                     <td class="table-plus">{{ $inTransaction->intransaction_date }}</td>
-                    <td class="table-plus">{{ $inTransaction->prodi }}</td>
-                    <td>{{ $inTransaction->bhp->name ?? '' }}</td>
+                    <td class="table-plus">{{ $inTransaction->lab->name_lab ?? '' }} - {{ $inTransaction->lab->prodi->name ?? '' }}</td>
+                    <td>{{ $inTransaction->bhp->name_bhp ?? '' }}</td>
                     <td>{{ $inTransaction->qty_intransaction }}</td>
-                    <td>{{ $inTransaction->unit->name ?? '' }}</td>
-                    <td>{{ $inTransaction->location }}</td>
                     <td>{{ Str::limit($inTransaction->description, 50) }}</td>
                     <td style="white-space: nowrap">
                         <div class="dropdown">

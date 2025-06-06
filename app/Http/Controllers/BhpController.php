@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bhp;
 use App\Models\Unit;
+use App\Models\Lab;
 use Illuminate\Http\Request;
 
 class BhpController extends Controller
@@ -33,12 +34,13 @@ class BhpController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' =>'required',
-            'stock' =>'required',
+            'name_bhp' =>'required',
             'minimum_stock' =>'required',
             'unit_id' =>'required',
         ]);
         $input = $request->all();
+        //membuat stok jika tidak diisi bernilai default 0
+        $input['stock'] = $input['stock'] ?? 0;
 
         Bhp::create($input);
         return redirect('/bhps')->with('message', 'BHP Berhasil Ditambahkan');
@@ -68,7 +70,7 @@ class BhpController extends Controller
     public function update(Request $request, Bhp $bhp)
     {
         $request->validate([
-            'name' =>'required',
+            'name_bhp' =>'required',
             'stock' =>'required',
             'minimum_stock' =>'required',
             'unit_id' =>'required',

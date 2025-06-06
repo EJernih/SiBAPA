@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OutTransaction;
 use App\Models\Bhp; 
 use App\Models\Unit;
+use App\Models\Lab;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,7 @@ class OutTransactionController extends Controller
      */
     public function index()
     {
-        $outTransactions = OutTransaction::all();
+        $outTransactions = OutTransaction::with('bhp', 'unit', 'lab.prodi')->get();
         return view('out_transaction.index', compact('outTransactions'));
     }
 
@@ -26,7 +27,8 @@ class OutTransactionController extends Controller
     {
         $bhps = Bhp::all();
         $units = Unit::all();
-        return view('out_transaction.create', compact('bhps', 'units'));
+        $labs = Lab::all();
+        return view('out_transaction.create', compact('bhps', 'units', 'labs'));
     }
 
     /**
@@ -37,11 +39,10 @@ class OutTransactionController extends Controller
         $request->validate([
         'outtransaction_date' => 'required',
         'matakuliah' => 'required',
-        'prodi' => 'required',
-        'location' => 'required',
+        'lab_id' => 'required',
         'bhp_id' => 'required',
-        'qty_outtransaction' => 'required',
-        'unit_id' => 'required',
+        'qty_outtransaction' => 'required|integer|min:1',
+
         'description' => 'required'
     ]);
     $result = DB::transaction(function() use($request) {
@@ -85,7 +86,8 @@ class OutTransactionController extends Controller
     {
         $bhps = Bhp::all();
         $units = Unit::all();
-        return view('out_transaction.edit', compact('outTransaction', 'bhps', 'units'));
+        $labs = Lab::all();
+        return view('out_transaction.edit', compact('outTransaction', 'bhps', 'units', 'labs'));
     }
 
     /**
@@ -96,11 +98,10 @@ class OutTransactionController extends Controller
         $request->validate([
         'outtransaction_date' => 'required',
         'matakuliah' => 'required',
-        'prodi' => 'required',
-        'location' => 'required',
+        'lab_id' => 'required',
         'bhp_id' => 'required',
         'qty_outtransaction' => 'required',
-        'unit_id' => 'required',
+
         'description' => 'required'
     ]);
     $input = $request->all();

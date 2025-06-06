@@ -44,7 +44,7 @@
                 @else
                     @foreach ($bhps as $bhp)
 					    <option value="{{ $bhp->id }}" {{ $detailRequest->bhp_id == $bhp->id?'selected' : '' }}>
-                            {{ $bhp->name }}
+                            {{ $bhp->name_bhp }}
                         </option>
                     @endforeach
                 @endif
@@ -66,7 +66,7 @@
                     @foreach ($units as $unit)
 					    <option value="{{ $unit->id }}"
                             {{ $bhp->unit_id == $unit->id?'selected' : '' }}>
-                            {{ $unit->name }}
+                            {{ $unit->name_unit }}
                         </option>
                     @endforeach
                 @endif

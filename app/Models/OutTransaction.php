@@ -11,11 +11,10 @@ class OutTransaction extends Model
     protected $fillable = [
         'outtransaction_date',
         'matakuliah',
-        'prodi',
-        'location',
+        'lab_id',
         'bhp_id',
         'qty_outtransaction',
-        'unit_id',
+
         'description'
         
     ];
@@ -30,5 +29,10 @@ class OutTransaction extends Model
     public function unit()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function lab()
+    {
+        return $this->belongsTo(Lab::class);
     }
 }

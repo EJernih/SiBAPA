@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\InTransaction;
 use App\Models\Bhp; 
 use App\Models\Unit;
+use App\Models\Lab;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class InTransactionController extends Controller
      */
     public function index()
     {
-        $inTransactions = InTransaction::all();
+        $inTransactions = InTransaction::with('bhp', 'unit', 'lab.prodi')->get();
         return view('in_transaction.index', compact('inTransactions'));
     }
 
@@ -27,7 +28,8 @@ class InTransactionController extends Controller
     {
         $bhps = Bhp::all();
         $units = Unit::all();
-        return view('in_transaction.create', compact('bhps', 'units'));
+        $labs = Lab::all();
+        return view('in_transaction.create', compact('bhps', 'units', 'labs'));
     }
 
     /**
@@ -37,16 +39,15 @@ class InTransactionController extends Controller
     {
         $request->validate([
         'intransaction_date' => 'required',
-        'prodi' => 'required',
+        'lab_id' => 'required',
         'bhp_id' => 'required',
         'qty_intransaction' => 'required|integer|min:1',
-        'unit_id' => 'required',
-        'location' => 'required',
+
         'description' => 'required'
     ]);
     DB::transaction(function() use($request) {
         //simpan transaksi masuk
-        $intransaction = InTransaction::create($request->all());
+        $inTransaction = InTransaction::create($request->all());
 
         //update stok bhp
         $bhp = Bhp::findOrFail($request->bhp_id);
@@ -71,7 +72,8 @@ class InTransactionController extends Controller
     {
         $bhps = Bhp::all();
         $units = Unit::all();
-        return view('in_transaction.edit', compact('inTransaction', 'bhps', 'units'));
+        $labs = Lab::all();
+        return view('in_transaction.edit', compact('inTransaction', 'bhps', 'units', 'labs'));
     }
 
     /**
@@ -81,11 +83,10 @@ class InTransactionController extends Controller
     {
         $request->validate([
         'intransaction_date' => 'required',
-        'prodi' => 'required',
+        'lab_id' => 'required',
         'bhp_id' => 'required',
         'qty_intransaction' => 'required',
-        'unit_id' => 'required',
-        'location' => 'required',
+
         'description' => 'required'
     ]);
     $input = $request->all();

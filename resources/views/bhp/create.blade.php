@@ -9,13 +9,13 @@
 <form id="bhpForm" action="{{ route ('bhps.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
-    @error('name')
+    @error('name_bhp')
         <small style="color: red">{{ $message }}</small>
     @enderror
 	<div class="form-group row">
 		<label class="col-sm-12 col-md-2 col-form-label">Nama BHP</label>
 		<div class="col-sm-12 col-md-10">
-			<input class="form-control" type="text" name="name" placeholder="Nama BHP">
+			<input class="form-control" type="text" name="name_bhp" placeholder="Nama BHP">
 		</div>
 	</div>
 
@@ -48,7 +48,7 @@
 			<select class="custom-select col-12" id="unit_id" name="unit_id">
 				<option value="">Choose...</option>
 				@foreach ($units as $unit)
-					<option value="{{ $unit->id }}">{{ $unit->name }}</option>
+					<option value="{{ $unit->id }}">{{ $unit->name_unit }}</option>
 				@endforeach
 			</select>
 		</div>

@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('bhp_id')->constrained('bhps')->onDelete('cascade');
+            $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
+            $table->foreignId('lab_id')->constrained('labs')->onDelete('cascade');
+            $table->enum('type', ['in', 'out']);
+            $table->integer('qty');
+            $table->date('transaction_date');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

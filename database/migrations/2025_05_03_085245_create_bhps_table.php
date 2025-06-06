@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('bhps', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('stock');
+            $table->string('name_bhp');
+            $table->integer('stock')->default(0);
             $table->integer('minimum_stock');
             $table->unsignedBigInteger('unit_id')->nullable();
             $table->timestamps();

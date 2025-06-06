@@ -33,7 +33,7 @@
 			<select class="custom-select col-12" id="bhp_id" name="bhp_id">
 				<option value="">Choose...</option>
 				@foreach ($bhps as $bhp)
-					<option value="{{ $bhp->id }}">{{ $bhp->name }}</option>
+					<option value="{{ $bhp->id }}">{{ $bhp->name_bhp }}</option>
 				@endforeach
 			</select>
 		</div>
@@ -48,7 +48,7 @@
 			<select class="custom-select col-12" id="unit_id" name="unit_id">
 				<option value="">Choose...</option>
 				@foreach ($units as $unit)
-					<option value="{{ $unit->id }}">{{ $unit->name }}</option>
+					<option value="{{ $unit->id }}">{{ $unit->name_unit }}</option>
 				@endforeach
 			</select>
 		</div>

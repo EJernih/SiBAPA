@@ -31,7 +31,7 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' =>'required|max:255',
+            'name_unit' =>'required|max:255',
         ]);
         $input = $request->all();
 
@@ -61,7 +61,7 @@ class UnitController extends Controller
     public function update(Request $request, Unit $unit)
     {
         $request->validate([
-            'name' =>'required|max:255',
+            'name_unit' =>'required|max:255',
         ]);
         $input = $request->all();
 

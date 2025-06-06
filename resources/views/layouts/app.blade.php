@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -99,14 +98,7 @@
 							</div>
 							<div class="col-md-6 col-sm-12 text-right">
 								<div class="dropdown">
-									<a
-										class="btn btn-primary dropdown-toggle"
-										href="#"
-										role="button"
-										data-toggle="dropdown"
-									>
-										January 2018
-									</a>
+
 									<div class="dropdown-menu dropdown-menu-right">
 										<a class="dropdown-item" href="#">Export List</a>
 										<a class="dropdown-item" href="#">Policies</a>
@@ -121,10 +113,7 @@
                     </div>
 				</div>
 				<div class="footer-wrap pd-20 mb-20 card-box">
-					DeskApp - Bootstrap 4 Admin Template By
-					<a href="https://github.com/dropways" target="_blank"
-						>Ankit Hingarajiya</a
-					>
+					Tugas Akhir - Jernih
 				</div>
 			</div>
 		</div>
@@ -136,12 +125,12 @@
 		<script src="{{ asset('back/vendors/scripts/script.min.js') }}"></script>
 		<script src="{{ asset('back/vendors/scripts/process.js') }}"></script>
 		<script src="{{ asset('back/vendors/scripts/layout-settings.js') }}"></script>
-		<script src="{{ asset('back/src/plugins/apexcharts/apexcharts.min.js') }}"></script>
+		<script src="{{ asset('back/src/plugins/apexcharts/apexcharts.min.js')}}"></script>
 		<script src="{{ asset('back/src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
 		<script src="{{asset ('back/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 		<script src="{{ asset('back/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
 		<script src="{{ asset('back/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
-		<script src="{{ asset('back/vendors/scripts/dashboard3.js') }}"></script>
+		<script src="{{ asset('back/vendors/scripts/dashboard3.js')}}"></script>
             @stack('scripts')
 	</body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bhp;
 use App\Models\BhpRequest;
 use App\Models\Unit;
+use App\Models\BhpRequestDetail;
 use Illuminate\Http\Request;
 
 class BhpRequestController extends Controller

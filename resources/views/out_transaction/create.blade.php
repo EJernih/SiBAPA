@@ -41,16 +41,17 @@
                             <input type="text" class="form-control" name="matakuliah" placeholder="Matakuliah" />
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label>Prodi :</label>
-                            <input type="text" class="form-control" name="prodi" placeholder="Prodi" />
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Lokasi :</label>
-                            <input type="text" class="form-control" name="location" placeholder="Lokasi" />
+                            <label for="lab_id">Lokasi :</label>
+                                <div class="">
+                                    <select class="custom-select col-12" id="lab_id" name="lab_id">
+                                        <option value="">Choose...</option>
+                                        @foreach ($labs as $lab)
+                                            <option value="{{ $lab->id }}">{{ $lab->name_lab}} - {{ $lab->prodi->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -63,7 +64,7 @@
                                     <select class="custom-select col-12" id="bhp_id" name="bhp_id">
                                         <option value="">Choose...</option>
                                         @foreach ($bhps as $bhp)
-                                            <option value="{{ $bhp->id }}">{{ $bhp->name }}</option>
+                                            <option value="{{ $bhp->id }}">{{ $bhp->name_bhp }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -73,19 +74,6 @@
                         <div class="form-group">
                             <label>Jumlah Barang Keluar :</label>
                             <input type="number" class="form-control" name="qty_outtransaction" placeholder="Jumlah Barang Keluar" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="unit_id">Satuan :</label>
-                                <div class="">
-                                    <select class="custom-select col-12" id="unit_id" name="unit_id">
-                                        <option value="">Choose...</option>
-                                        @foreach ($units as $unit)
-                                            <option value="{{ $unit->id }}">{{ $unit->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
                         </div>
                     </div>
                 </div>
