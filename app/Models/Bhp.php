@@ -45,4 +45,16 @@ class Bhp extends Model
         return $this->hasMany(Transaction::class, 'bhp_id');
     }
 
+    //relasi ke tabel lab
+    public function lab()
+    {
+        return $this->belongsTo(Lab::class, 'lab_id');
+    }
+
+    //relasi ke tabel bhp_lab_stocks
+    public function labStocks()
+    {
+        return $this->hasMany(BhpLabStock::class, 'bhp_id');
+    }
+
 }

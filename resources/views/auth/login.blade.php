@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -85,8 +84,8 @@
 				class="container-fluid d-flex justify-content-between align-items-center"
 			>
 				<div class="brand-logo">
-					<a href="login.html">
-						<img src="{{ asset('back/vendors/images/deskapp-logo.svg')}}" alt="" />
+					<a href="">
+						<img src="{{ asset('')}}" alt="" />
 					</a>
 				</div>
 				<div class="login-menu">
@@ -109,15 +108,24 @@
 							<div class="login-title">
 								<h2 class="text-center text-primary">Login To SiBAPA</h2>
 							</div>
-							<form>
-								<div class="select-role">
+      @error('loginError')
+      <div class="alert alert-danger">
+        <strong>Error</strong>
+        <p>{{$message}}</p>
+      </div>   
+      @enderror
 
+        @error('email')
+      <small style="color:red">{{$message}}</small>   
+      @enderror
+							<form method="POST" action="{{ route('login.authenticate') }}">
+								@csrf
 								<div class="input-group custom">
 									<input
-										type="text"
+										type="email"
 										class="form-control form-control-lg"
-										placeholder="Username"
-                                        name="name"
+										placeholder="Email"
+                                        name="email"
 									/>
 									<div class="input-group-append custom">
 										<span class="input-group-text"
@@ -125,6 +133,9 @@
 										></span>
 									</div>
 								</div>
+      @error('password')
+       <small style="color:red">{{$message}}</small> 
+      @enderror
 								<div class="input-group custom">
 									<input
 										type="password"
@@ -160,15 +171,8 @@
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="input-group mb-0">
-											<!--
-											use code for form submit
 											<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
-										-->
-											<a
-												class="btn btn-primary btn-lg btn-block"
-												href="/dashboard"
-												>Sign In</a
-											>
+		
 										</div>
 										<div
 											class="font-16 weight-600 pt-10 pb-10 text-center"

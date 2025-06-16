@@ -35,4 +35,10 @@ class Lab extends Model
     {
         return $this->hasMany(InTransaction::class);
     }
+
+    //relasi ke tabel bhp_lab_stocks
+    public function labStocks()
+    {
+        return $this->hasMany(BHPLabStock::class);
+    }
 }

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="title pb-20">
-    <h2 class="h3 mb-0">Hospital Overview</h2>
+    <h2 class="h3 mb-0 text-gray-800 text-center">Sistem Pengelolaan Persediaan Barang Habis Pakai Laboratorium JKB</h2>
 </div>
 
 <div class="row pb-10">

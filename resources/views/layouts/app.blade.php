@@ -108,9 +108,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-                        @yield('content')
-                    </div>
+					@yield('content')
+
 				</div>
 				<div class="footer-wrap pd-20 mb-20 card-box">
 					Tugas Akhir - Jernih
@@ -131,6 +130,30 @@
 		<script src="{{ asset('back/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
 		<script src="{{ asset('back/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
 		<script src="{{ asset('back/vendors/scripts/dashboard3.js')}}"></script>
+		<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+@push('scripts')
+<script>
+$(function () {
+// Loop semua <table> yang punya class .data-table
+$('table.data-table').each(function () {
+// Cegah error “re‑initialisation” kalau sudah di‑init
+if (! $.fn.DataTable.isDataTable(this)) {
+$(this).DataTable({
+responsive: true,
+autoWidth : false,
+// opsi lain sesuai kebutuhan
+// paging    : false,
+// searching : false,
+// ordering  : false,
+});
+}
+});
+});
+</script>
+@endpush
             @stack('scripts')
+
 	</body>
 </html>

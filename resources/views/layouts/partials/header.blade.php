@@ -338,8 +338,8 @@
                     <a class="dropdown-item" href="faq.html"
                         ><i class="dw dw-help"></i> Help</a
                     >
-                    <a class="dropdown-item" href="login.html"
-                        ><i class="dw dw-logout"></i> Log Out</a
+                    <a class="dropdown-item" href="/"
+                        ><i class="/logout"></i> Log Out</a
                     >
                 </div>
             </div>

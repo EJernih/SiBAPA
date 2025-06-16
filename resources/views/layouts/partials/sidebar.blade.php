@@ -168,10 +168,11 @@
     </div>
 </div>
 
+{{-- //file logo --}}
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="{{ url('/') }}">
-            <img src="{{ asset('back/vendors/images/deskapp-logo.svg')}}" alt="" class="dark-logo" />
+            <img src="{{ asset('back/vendors/images/logo_sibapa.png')}}" alt="" class="dark-logo" /> ini file logo
             <img
                 src="{{ asset('back/vendors/images/deskapp-logo-white.svg')}}"
                 alt=""
@@ -199,6 +200,7 @@
                         ><span class="mtext">Master</span>
                     </a>
                     <ul class="submenu" class="{{ request()->is('forms*')? 'display:block;' : '' }}">
+                        {{-- <li><a href="/coba">Master</a></li> --}}
                         <li><a href="/bhps">BHP</a></li>
                         <li><a href="/units">SATUAN</a></li>
                         <li><a href="/prodis">PRODI</a></li>
@@ -251,16 +253,18 @@
                         <li><a href="ui-carousel.html">Carousel</a></li>
                     </ul>
                 </li> --}}
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-command"></span
-                        ><span class="mtext">BHP</span>
-                    </a>
-                    <ul class="submenu" style="">
-                        <li class=""><a href="#">Data BHP</a></li>
-                        <li><a href="#">Data Unit</a></li>
-                    </ul>
-                </li>
+<li class="dropdown {{ request()->is('bhps*') || request()->is('units*') ? 'active' : '' }}">
+    <a href="javascript:;" class="dropdown-toggle">
+        <span class="micon bi bi-command"></span>
+        <span class="mtext">BHP</span>
+    </a>
+    <ul class="submenu">
+        <li class="{{ request()->is('bhps*') ? 'active' : '' }}">
+            <a href="{{ route('bhps.index') }}">Data BHP</a>
+        </li>
+    </ul>
+</li>
+
                 <li class="dropdown" {{ request()->is('requests*')? 'show' : '' }}>
                     <a href="javascript:;" class="dropdown-toggle {{ request()->is('requests*')? 'active' : '' }}">
                         <span class="micon bi bi-calendar4-week"></span
@@ -274,11 +278,11 @@
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-file-earmark-text"></span
-                        ><span class="mtext">Transaksi</span>
+                        ><span class="mtext">Form</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="/inTransactions">Transaksi Masuk</a></li>
-                        <li><a href="/outTransactions">Transaksi Keluar</a></li>
+                        <li><a href="/inTransactions">Kartu Stok</a></li>
+                        <li><a href="/outTransactions">Penggunaan BHP</a></li>
                     </ul>
                 </li>
                 {{-- <li class="dropdown">

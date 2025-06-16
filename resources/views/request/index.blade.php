@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title','request')
 @section('content')
+					<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 <!-- Simple Datatable start -->
 
 <a href="/bhpRequests/create"  class="mb-3 float-right text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">
@@ -8,7 +9,7 @@
 </a>    
 
     <div class="pd-20">
-        <h4 class="text-blue h4">Data Table Simple</h4>
+        <h4 class="text-blue h4">Daftar Pengajuan</h4>
     </div>
 
     @if (session('message'))
@@ -81,6 +82,7 @@
             @endforeach
             </tbody>
         </table>
+    </div>
     </div>
 <!-- Simple Datatable End -->
 @endsection
